@@ -5,7 +5,9 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Game } from "@/app/lib/interfaces/games";
-export default function GameDetailPage() {
+import Loading from "./loading";
+import Error from "./error";
+export default function Page() {
   const params = useParams();
   const gameId = Number(params.id);
 
@@ -13,22 +15,13 @@ export default function GameDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="size-12 animate-spin rounded-full border-4 border-purple-500 border-t-transparent" />
-      </div>
+      <Loading />
     );
   }
 
-  if (error || !game) {
+  if (error || !game || game.name === 'NaN') {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-red-500">Error loading game</h1>
-          <Link href="/" className="mt-4 inline-block text-purple-500 hover:underline">
-            ← Back to home
-          </Link>
-        </div>
-      </div>
+      <Error />
     );
   }
 

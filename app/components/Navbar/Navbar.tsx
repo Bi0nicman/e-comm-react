@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { NAV_LINKS } from "../constants/nat";
+import { NAV_LINKS } from "../../lib/constants/navbar";
 import { useCallback, useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import { useSearchGamesQuery } from "@/app/lib/services/gamesApi";
