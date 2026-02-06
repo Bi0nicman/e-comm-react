@@ -1,4 +1,4 @@
-import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Game } from '../interfaces/games';
 
 interface GamesStore {
@@ -25,5 +25,10 @@ const favouritesSlice = createSlice({
 })
 
 export const { addFavoriteGame, removeFavoriteGame } = favouritesSlice.actions;
-export default favouritesSlice.reducer;
+export default favouritesSlice.reducer; // export del reducer, lo importeremo nello store tramite alias favouriteReducer
+
+/*
+Quando facciamo l'esport del reducer, lo facciamo con export default, stiamo esportando
+una sola funzione (state = initialState, action) => nextState
+*/
 

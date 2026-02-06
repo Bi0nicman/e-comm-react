@@ -6,7 +6,7 @@ type CardProps = {
   id: number;
   description?: string;
   isFavorite: boolean;
-  onToggleFavorite: (id: number) => void;
+  onToggleFavorite: (game: number) => void;
 };
 
 export function Card({
@@ -21,7 +21,7 @@ export function Card({
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-emerald-950">
       <Image className="w-full h-60 object-cover" src={imgLink || pathNoPicture}
-        width={640}
+        width={540}
         height={360}
         alt={title || "no-image"} />
       <div className="px-6 py-4">
@@ -34,7 +34,7 @@ export function Card({
 
         <button
           onClick={() => onToggleFavorite(id)}
-          className={`bg-emerald-950 font-bold py-2 px-4 rounded transition-colors
+          className={`bg-emerald-950 font-bold py-2 px-4 rounded transition-colors cursor-pointer
     ${isFavorite ? "text-yellow-400" : "text-white hover:text-yellow-400"}
   `}
         >

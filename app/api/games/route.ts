@@ -6,13 +6,22 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "API_KEY mancante" }, { status: 500 });
   }
 
-  const searchParams = new URLSearchParams();
-  searchParams.set("key", apiKey);
-  searchParams.set("page", '1');
-   searchParams.set("page_size", '10');
-  
+  const { searchParams } = new URL(req.url);
+  const isSearchPresent = searchParams.has("search");
+
+  const upstreamParams = new URLSearchParams();
+  upstreamParams.set("key", apiKey);
+  upstreamParams.set("page", '1');
+  upstreamParams.set("page_size", '10');
+  if(isSearchPresent) {
+    upstreamParams.set("search", searchParams.get("search")!);
+  }
   // chiamata all'API esterna con la key
-  const upstream = await fetch(`https://api.rawg.io/api/games?${searchParams.toString()}`, {
+  /*
+  no-cache significa puoi anche usare la cache, ma devi prima “ricontrollare” col server (revalidate) se è ancora valida.
+  no-store invece dice di non usare la cache in nessun modo, e di andare sempre a prendere i dati freschi dal server.
+  */
+  const upstream = await fetch(`https://api.rawg.io/api/games?${upstreamParams.toString()}`, {
     cache: "no-store",
   });
 
