@@ -17,7 +17,9 @@ const nextConfig: NextConfig = {
         hostname: "media.rawg.io",
       },
     ],
-  },
+  }
 };
+
+
 
 export default nextConfig;

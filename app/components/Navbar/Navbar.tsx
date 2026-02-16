@@ -6,6 +6,7 @@ import styles from "./Navbar.module.css";
 import { useSearchGamesQuery } from "@/app/lib/services/gamesApi";
 import Image from "next/image";
 import { useAppSelector } from "@/app/lib/hooks";
+import { SignInModal } from "../modalSignIn/SignIn";
 
 export function Navbar() {
 
@@ -113,9 +114,7 @@ export function Navbar() {
           }
 
           <div className="hidden lg:flex">
-            <Link href="/login" className="text-sm text-purple-500 font-semibold hover:underline">
-              Sign in <span aria-hidden="true">→</span>
-            </Link>
+            <SignInModal />
           </div>
         </div>
 

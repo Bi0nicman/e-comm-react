@@ -7,5 +7,10 @@ export default function StoreProvider({
 }: {
   children: React.ReactNode
 }) {
-  return <Provider store={store}>{children}</Provider>
+  //Il provider rende redux store disponibile in ogni componente figlio che ne ha bisogno, quindi avvolge l'applicazione
+  return (
+    <Provider store={store}>
+      {children}
+    </Provider>
+  )
 }
