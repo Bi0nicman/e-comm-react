@@ -7,7 +7,12 @@ type CreateUserPayload = {
   password: string;
   gender: string;
   email: string;
-};  
+};
+
+type LoginUserPayload = {
+  username: string;
+  password: string;
+};
 
 export async function fetchUsers() {
   const res = await fetch(`${API_BASE_URL}/users/user`, { cache: 'no-store' });
@@ -15,8 +20,8 @@ export async function fetchUsers() {
   return res.json();
 }
 
-export async function createUsers(payload:CreateUserPayload ) {
-  const res = await fetch(`${API_BASE_URL}/users/create`, {
+export async function createUsers(payload: CreateUserPayload) {
+  const res = await fetch(`${API_BASE_URL}/auth/signUp`, {
     method: 'POST',
     cache: 'no-store',
     headers: {
@@ -26,5 +31,25 @@ export async function createUsers(payload:CreateUserPayload ) {
   });
 
   if (!res.ok) throw new Error('Failed to create user');
+  return res.json();
+}
+
+export async function authenticateUser(formData: FormData) {
+
+  const payload: LoginUserPayload = {
+    username: formData.get('username') as string,
+    password: formData.get('password') as string,
+  };
+
+  const res = await fetch(`${API_BASE_URL}/auth/signIn`, {
+    method: 'POST',
+    cache: 'no-store',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) throw new Error('Failed to authenticate user');
   return res.json();
 }

@@ -3,6 +3,8 @@
 import { Dropdown } from '../components/Dropdown/dropdown';
 import styles from './SignUp.module.css';
 import { createUsers } from '../lib/services/eStoreApi';
+import bcrypt  from 'bcryptjs';
+
 export default function Page() {
 
   const  signUp = async (event: React.FormEvent<HTMLFormElement>) => {
