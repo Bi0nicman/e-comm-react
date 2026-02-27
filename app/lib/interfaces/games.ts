@@ -1,27 +1,27 @@
-export interface EsrbRating {
+export type EsrbRating = {
   id: number;
   slug: string;
   name: string;
 }
 
-export interface PlatformDetails {
+export type PlatformDetails = {
   id: number;
   slug: string;
   name: string;
 }
 
-export interface Requirements {
+export type Requirements = {
   minimum: string;
   recommended: string;
 }
 
-export interface Platform {
+export type Platform = {
   platform: PlatformDetails;
   released_at: string;
   requirements: Requirements;
 }
 
-export interface Game {
+export type Game = {
   id: number;
   slug: string;
   name: string;
@@ -30,7 +30,7 @@ export interface Game {
   background_image: string;
   rating: number;
   rating_top: number;
-  ratings:object;
+  ratings: object;
   ratings_count: number;
   reviews_text_count: string;
   added: number;
@@ -44,7 +44,7 @@ export interface Game {
   platforms: Platform[];
 }
 
-export interface GamesResponse {
+export type GamesResponse = {
   count: number;
   next: string;
   previous: string;
