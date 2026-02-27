@@ -14,6 +14,8 @@ const favouritesSlice = createSlice({
   reducers: {
     addFavoriteGame(state, action: PayloadAction<Game>) {
       // evita duplicati
+       // action.type = 'favourites/addFavoriteGame' (implicito)
+      // action.payload = il Game che hai passato
       const exists = state.some(g => g.id === action.payload.id);
       if (!exists) state.push(action.payload);
     },
