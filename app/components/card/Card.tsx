@@ -1,5 +1,6 @@
 
 import Image from "next/image";
+import React from "react";
 type CardProps = {
   imgLink?: string;
   title?: string;
@@ -9,7 +10,7 @@ type CardProps = {
   onToggleFavorite: (game: number) => void;
 };
 
-export function Card({
+export const Card = React.memo(function Card({
   imgLink,
   title,
   id,
@@ -33,6 +34,8 @@ export function Card({
       <div className="px-6 pt-4 pb-2">
 
         <button
+          name="toggleFavorite"
+          aria-label={isFavorite ? "favourite" : "add to favourites"}
           onClick={() => onToggleFavorite(id)}
           className={`bg-emerald-950 font-bold py-2 px-4 rounded transition-colors cursor-pointer
     ${isFavorite ? "text-yellow-400" : "text-white hover:text-yellow-400"}
@@ -45,6 +48,8 @@ export function Card({
             strokeWidth={1.5}
             stroke="currentColor"
             className="size-6"
+            role="icon"
+            
           >
             <path
               strokeLinecap="round"
@@ -58,4 +63,4 @@ export function Card({
       </div>
     </div >
   );
-}
+});
